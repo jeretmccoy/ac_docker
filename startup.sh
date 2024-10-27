@@ -13,5 +13,5 @@ else
         mv $ANKICONNECT_CONFIG_BACKUP $ANKICONNECT_CONFIG_FILE
     fi
 fi
-
+# UM
 anki -b /data
