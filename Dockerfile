@@ -41,11 +41,10 @@ VOLUME /export
 
 # Plugin installation
 WORKDIR /app
-RUN git clone -b ${ANKICONNECT_VERSION} --single-branch -n --depth=1 --filter=tree:0 \
-        https://git.foosoft.net/alex/anki-connect.git && \
-        cd anki-connect && git sparse-checkout set --no-cone plugin && git checkout
-RUN chown -R anki:anki /app/anki-connect/plugin && \
-    ln -s -f /app/anki-connect/plugin /data/addons21/AnkiConnectDev
+RUN git clone https://github.com/jeretmccoy/ac_login.git && \
+        cd ac_login && git sparse-checkout set --no-cone plugin && git checkout
+RUN chown -R anki:anki /app/ac_login/plugin && \
+    ln -s -f /app/ac_login/plugin /data/addons21/AnkiConnectDev
 
 # Edit AnkiConnect config
 RUN jq '.webBindAddress = "0.0.0.0"' /data/addons21/AnkiConnectDev/config.json > tmp_file && \
